@@ -25,7 +25,7 @@
 					data-toggle="dropdown"> 系统管理 <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">用户管理</a></li>
+						<li><a href="#" linkUrl="web/user/userList.html">用户管理</a></li>
 						<li><a href="#">角色管理</a></li>
 						<li><a href="#">权限管理</a></li>
 					</ul></li>
@@ -56,26 +56,52 @@ window.onload = function(){
 	//点击导航，新增标签页------------------------------------------------------------------------------------
 	$(".dropdown-menu").find("a").on("click", function(){
 		var tabName = $(this).text();
-		var index = $("#myTab").children().length+1;
+		var linkUrl = $(this).attr("linkUrl");
 		//删掉原来的标签页面
-		$("#"+tabName).remove();
+		$("#"+tabName+"Content").remove();
 		//设置全部隐藏
 		$("#myTab").find(".active").removeClass("active");
 		$("#myTabContent").find(".active").removeClass("active");
 		//新增标签页面
-		$("#myTab").append('<li class="active" id="'+index+'Content" onclick="showTabContent('+index+')"><a href="#" data-toggle="tab">'+tabName+'</a></li>');
-		$("#myTabContent").append('<div class="tab-pane fade in active" id="'+index+'TabContent"><iframe style="width:100%;height:700px;" src="web/user/userList.html"></iframe></div>');
+		$("#myTab").append('<li class="active" id="'+tabName+'Content" onclick="showTabContent(\''+tabName+'\')"><a href="#" data-toggle="tab">'+tabName+'</a></li>');
+		$("#myTabContent").append('<div class="tab-pane fade in active" id="'+tabName+'TabContent"><iframe style="width:100%;height:700px;" src="'+linkUrl+'"></iframe></div>');
 	});
 	
 }
 
 
 //根据id，显示标签页主体-------------------------------------------------------------------------------------------
-function showTabContent(index){
+function showTabContent(tabName){
 	$("#myTabContent").find(".in").removeClass("in");
 	$("#myTabContent").find(".active").removeClass("active");
-	$("#"+index+"TabContent").addClass("in");
-	$("#"+index+"TabContent").addClass("active");
+	$("#"+tabName+"TabContent").addClass("in");
+	$("#"+tabName+"TabContent").addClass("active");
+}
+//新增标签页面------------------------------------------------------------------------------------------------
+function addTab(tabName,linkUrl){
+	//删掉原来的标签页面
+	$("#"+tabName+"Content").remove();
+	//设置全部隐藏
+	$("#myTab").find(".active").removeClass("active");
+	$("#myTabContent").find(".active").removeClass("active");
+	//新增标签页面
+	$("#myTab").append('<li class="active" id="'+tabName+'Content" onclick="showTabContent(\''+tabName+'\')"><a href="#" data-toggle="tab">'+tabName+'</a></li>');
+	$("#myTabContent").append('<div class="tab-pane fade in active" id="'+tabName+'TabContent"><iframe style="width:100%;height:700px;" src="'+linkUrl+'"></iframe></div>');
+}
+//url形式的参数转化为json格式-------------------------------------------------------------------------------------
+function getQueryObject(url) {
+    url = url == null ? window.location.href : url;
+    var search = url.substring(url.lastIndexOf("?") + 1);
+    var obj = {};
+    var reg = /([^?&=]+)=([^?&=]*)/g;
+    search.replace(reg, function (rs, $1, $2) {
+        var name = decodeURIComponent($1);
+        var val = decodeURIComponent($2);               
+        val = String(val);
+        obj[name] = val;
+        return rs;
+    });
+    return obj;
 }
 </script>
 </body>

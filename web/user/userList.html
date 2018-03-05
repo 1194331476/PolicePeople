@@ -9,10 +9,16 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function addUser(){
+	//跳转新增页面
+	parent.addTab("新增用户","web/user/addUser.html");
+}
+</script>
 </head>
 <body>
 
-<button type="button" class="btn btn-default">新增</button>
+<button type="button" class="btn btn-default" onclick="addUser()">新增</button>
 <button type="button" class="btn btn-default">编辑</button>
 <button type="button" class="btn btn-default">删除</button>
 <button type="button" class="btn btn-default">分配角色</button>
