@@ -16,10 +16,13 @@ function add(){
 	var submitData = "?"+decodeURIComponent(data,true);
 	//submitData是解码后的表单数据，结果同上
 	var submitData = parent.getQueryObject(submitData);
-	console.info(submitData);
 	$.ajax({
 	    url:'../../controller/user.php?method=addUser',
-	    data:submitData,
+	    type: "POST",
+	    //dataType:"json",
+	    data:{
+	    	"data":submitData
+	    },
 	    async:true,//true为异步，false为同步
 	    success:function(result){
 	        console.info(result);
