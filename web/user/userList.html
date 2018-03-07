@@ -10,6 +10,27 @@
 <!-- 包括所有已编译的插件 -->
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+window.onload = function(){
+	initTable();
+	
+}
+//初始化表格数据-------------------------------------------------------------------------------------
+function initTable(){
+	$.ajax({
+	    url:'../../controller/user.php?method=getUserListPage',
+	    type: "POST",
+	    dataType:"json",
+	    data:{
+	    	
+	    },
+	    async:true,//true为异步，false为同步
+	    success:function(result){
+	    	if(result == "success"){
+	    		parent.delTab("新增用户");
+	    	}
+	    }
+	})
+}
 function addUser(){
 	//跳转新增页面
 	parent.addTab("新增用户","web/user/addUser.html");

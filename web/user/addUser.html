@@ -25,7 +25,9 @@ function add(){
 	    },
 	    async:true,//true为异步，false为同步
 	    success:function(result){
-	        console.info(result);
+	    	if(result == "success"){
+	    		parent.delTab("新增用户");
+	    	}
 	    }
 	})
 }
