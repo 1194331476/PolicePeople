@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ÓÃ»§ÁĞ±í</title>
+<title>ç”¨æˆ·åˆ—è¡¨</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ÒıÈë Bootstrap -->
+<!-- å¼•å…¥ Bootstrap -->
 <link href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery (Bootstrap µÄ JavaScript ²å¼şĞèÒªÒıÈë jQuery) -->
+<!-- jQuery (Bootstrap çš„ JavaScript æ’ä»¶éœ€è¦å¼•å…¥ jQuery) -->
 <script src="https://code.jquery.com/jquery.js"></script>
-<!-- °üÀ¨ËùÓĞÒÑ±àÒëµÄ²å¼ş -->
+<!-- åŒ…æ‹¬æ‰€æœ‰å·²ç¼–è¯‘çš„æ’ä»¶ -->
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 	initTable();
-	
 }
-//³õÊ¼»¯±í¸ñÊı¾İ-------------------------------------------------------------------------------------
+//åˆå§‹åŒ–è¡¨æ ¼æ•°æ®-------------------------------------------------------------------------------------
 function initTable(){
 	$.ajax({
 	    url:'../../controller/user.php?method=getUserListPage',
@@ -23,56 +22,54 @@ function initTable(){
 	    data:{
 	    	
 	    },
-	    async:true,//trueÎªÒì²½£¬falseÎªÍ¬²½
+	    async:true,//trueä¸ºå¼‚æ­¥ï¼Œfalseä¸ºåŒæ­¥
 	    success:function(result){
-	    	if(result == "success"){
-	    		parent.delTab("ĞÂÔöÓÃ»§");
-	    	}
+	    	console.info(result);
 	    }
 	})
 }
 function addUser(){
-	//Ìø×ªĞÂÔöÒ³Ãæ
-	parent.addTab("ĞÂÔöÓÃ»§","web/user/addUser.html");
+	//è·³è½¬æ–°å¢é¡µé¢
+	parent.addTab("æ–°å¢ç”¨æˆ·","web/user/addUser.html");
 }
 </script>
 </head>
 <body>
 
-<button type="button" class="btn btn-default" onclick="addUser()">ĞÂÔö</button>
-<button type="button" class="btn btn-default">±à¼­</button>
-<button type="button" class="btn btn-default">É¾³ı</button>
-<button type="button" class="btn btn-default">·ÖÅä½ÇÉ«</button>
+<button type="button" class="btn btn-default" onclick="addUser()">æ–°å¢</button>
+<button type="button" class="btn btn-default">ç¼–è¾‘</button>
+<button type="button" class="btn btn-default">åˆ é™¤</button>
+<button type="button" class="btn btn-default">åˆ†é…è§’è‰²</button>
 
 <br>
 
-<input type="text" class="form-control" id="name" placeholder="ÇëÊäÈëÃû³Æ">
-<button type="button" class="btn btn-default">²éÑ¯</button>
+<input type="text" class="form-control" id="name" placeholder="è¯·è¾“å…¥åç§°">
+<button type="button" class="btn btn-default">æŸ¥è¯¢</button>
 
 <table class="table">
   <thead>
     <tr>
-      <th>²úÆ·</th>
-      <th>¸¶¿îÈÕÆÚ</th>
-      <th>×´Ì¬</th></tr>
+      <th>äº§å“</th>
+      <th>ä»˜æ¬¾æ—¥æœŸ</th>
+      <th>çŠ¶æ€</th></tr>
   </thead>
   <tbody>
     <tr class="active">
-      <td>²úÆ·1</td>
+      <td>äº§å“1</td>
       <td>23/11/2013</td>
-      <td>´ı·¢»õ</td></tr>
+      <td>å¾…å‘è´§</td></tr>
     <tr class="success">
-      <td>²úÆ·2</td>
+      <td>äº§å“2</td>
       <td>10/11/2013</td>
-      <td>·¢»õÖĞ</td></tr>
+      <td>å‘è´§ä¸­</td></tr>
     <tr class="warning">
-      <td>²úÆ·3</td>
+      <td>äº§å“3</td>
       <td>20/10/2013</td>
-      <td>´ıÈ·ÈÏ</td></tr>
+      <td>å¾…ç¡®è®¤</td></tr>
     <tr class="danger">
-      <td>²úÆ·4</td>
+      <td>äº§å“4</td>
       <td>20/10/2013</td>
-      <td>ÒÑÍË»õ</td></tr>
+      <td>å·²é€€è´§</td></tr>
   </tbody>
 </table>
 

@@ -1,8 +1,7 @@
 <?php
 require ('db.php');
 
-$method = "getUserListPage";
-
+$method = $_GET['method'];
 
 if($method == "addUser"){
    //新增用户方法-------------------------------------------------------------------------------------------
@@ -15,17 +14,15 @@ if($method == "addUser"){
        echo "error";
    } 
 }else if($method == "getUserListPage"){
-    //返回用户分页数据----------------------------------------------------------------------------------------
     $sql="select * from user";
-    //执行查询并获取查询结果
-    $result = $conn->sql($sql);
-    //输出受影响数据行数
-    $num=$conn->getResultNum($sql);
-    echo "影响的行数：".$num;
-    //读取并输出记录
-    while ($row = mysqli_fetch_assoc($result)){
-        echo "{$row['name']} ";
-        echo "{$row['password']}";
+    $result = mysqli_query($conn,$sql); 
+    $i = 0;
+    while($obj = mysqli_fetch_object($result)){
+        $json[$i] = $obj;
+        ++$i;
     }
+    echo json_encode($json);
+    // 释放结果集 
+    mysqli_free_result($result);
 }
 $conn->close();

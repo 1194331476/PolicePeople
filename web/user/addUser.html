@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ÓÃ»§ÁĞ±í</title>
+<title>ç”¨æˆ·åˆ—è¡¨</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ÒıÈë Bootstrap -->
+<!-- å¼•å…¥ Bootstrap -->
 <link href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery (Bootstrap µÄ JavaScript ²å¼şĞèÒªÒıÈë jQuery) -->
+<!-- jQuery (Bootstrap çš„ JavaScript æ’ä»¶éœ€è¦å¼•å…¥ jQuery) -->
 <script src="https://code.jquery.com/jquery.js"></script>
-<!-- °üÀ¨ËùÓĞÒÑ±àÒëµÄ²å¼ş -->
+<!-- åŒ…æ‹¬æ‰€æœ‰å·²ç¼–è¯‘çš„æ’ä»¶ -->
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function add(){
 	var data = $('#formData').serialize();
-	//ĞòÁĞ»¯»ñµÃ±íµ¥Êı¾İ£¬½á¹ûÎª£ºuser_id=12&user_name=John&user_age=20
+	//åºåˆ—åŒ–è·å¾—è¡¨å•æ•°æ®ï¼Œç»“æœä¸ºï¼šuser_id=12&user_name=John&user_age=20
 	var submitData = "?"+decodeURIComponent(data,true);
-	//submitDataÊÇ½âÂëºóµÄ±íµ¥Êı¾İ£¬½á¹ûÍ¬ÉÏ
+	//submitDataæ˜¯è§£ç åçš„è¡¨å•æ•°æ®ï¼Œç»“æœåŒä¸Š
 	var submitData = parent.getQueryObject(submitData);
 	$.ajax({
 	    url:'../../controller/user.php?method=addUser',
 	    type: "POST",
-	    //dataType:"json",
 	    data:{
 	    	"data":submitData
 	    },
-	    async:true,//trueÎªÒì²½£¬falseÎªÍ¬²½
+	    async:true,//trueä¸ºå¼‚æ­¥ï¼Œfalseä¸ºåŒæ­¥
 	    success:function(result){
 	    	if(result == "success"){
-	    		parent.delTab("ĞÂÔöÓÃ»§");
+	    		parent.delTab("æ–°å¢ç”¨æˆ·");
 	    	}
 	    }
 	})
@@ -38,30 +37,30 @@ function add(){
 <form id="formData" class="form-horizontal" role="form" >
 
   <div class="form-group">
-    <label for="username" class="col-sm-2 control-label">ÓÃ»§Ãû</label>
+    <label for="username" class="col-sm-2 control-label">ç”¨æˆ·å</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="username" name="username" placeholder="ÇëÊäÈëÓÃ»§Ãû">
+      <input type="text" class="form-control" id="username" name="username" placeholder="è¯·è¾“å…¥ç”¨æˆ·å">
     </div>
   </div>
   
   <div class="form-group">
-    <label for="truename" class="col-sm-2 control-label">ĞÕÃû</label>
+    <label for="truename" class="col-sm-2 control-label">å§“å</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="truename" name="truename" placeholder="ÇëÊäÈëĞÕÃû">
+      <input type="text" class="form-control" id="truename" name="truename" placeholder="è¯·è¾“å…¥å§“å">
     </div>
   </div>
   
   <div class="form-group">
-    <label for="sex" class="col-sm-2 control-label">ĞÔ±ğ</label>
+    <label for="sex" class="col-sm-2 control-label">æ€§åˆ«</label>
     <div class="col-sm-8">
     	<div class="radio-inline">
 		    <label>
-		        <input type="radio" name="sex" id="sex1" value="ÄĞ" checked> ÄĞ
+		        <input type="radio" name="sex" id="sex1" value="ç”·" checked> ç”·
 		    </label>
 		</div>
 		<div class="radio-inline">
 		    <label>
-		        <input type="radio" name="sex" id="sex2" value="Å®"> Å®
+		        <input type="radio" name="sex" id="sex2" value="å¥³"> å¥³
 		    </label>
 		</div>
     </div>
@@ -71,7 +70,7 @@ function add(){
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="button" class="btn btn-default" onclick="add()">Ìá½»</button>
+      <button type="button" class="btn btn-default" onclick="add()">æäº¤</button>
     </div>
   </div>
 </form>
