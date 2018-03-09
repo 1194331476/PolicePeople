@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>¸öÈËĞÅÏ¢µÇ¼ÇÏµÍ³</title>
+<title>ä¸ªäººä¿¡æ¯ç™»è®°ç³»ç»Ÿ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ÒıÈë Bootstrap -->
+<!-- å¼•å…¥ Bootstrap -->
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery (Bootstrap µÄ JavaScript ²å¼şĞèÒªÒıÈë jQuery) -->
+<!-- jQuery (Bootstrap çš„ JavaScript æ’ä»¶éœ€è¦å¼•å…¥ jQuery) -->
 <script src="https://code.jquery.com/jquery.js"></script>
-<!-- °üÀ¨ËùÓĞÒÑ±àÒëµÄ²å¼ş -->
+<!-- åŒ…æ‹¬æ‰€æœ‰å·²ç¼–è¯‘çš„æ’ä»¶ -->
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="static/common.js"></script>
+<style type="text/css">
+#myTab li{
+	width: 120px;
+}
+</style>
 </head>
 <body>
 
 
-<!-- -------------------------------------------------------µ¼º½À¸------------------------------------------------------------- -->
+<!-- -------------------------------------------------------å¯¼èˆªæ ------------------------------------------------------------- -->
 <nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
+	<div class="container-fluid" style="height: 50px;">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">¸öÈËĞÅÏ¢µÇ¼ÇÏµÍ³</a>
+			<a class="navbar-brand" href="#">ä¸ªäººä¿¡æ¯ç™»è®°ç³»ç»Ÿ</a>
 		</div>
 		<div>
 			<ul id="dh" class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> ÏµÍ³¹ÜÀí <b class="caret"></b>
+					data-toggle="dropdown"> ç³»ç»Ÿç®¡ç† <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#" linkUrl="web/user/userList.html">ÓÃ»§¹ÜÀí</a></li>
-						<li><a href="#">½ÇÉ«¹ÜÀí</a></li>
-						<li><a href="#">È¨ÏŞ¹ÜÀí</a></li>
+						<li><a href="#" linkUrl="web/user/userList.html">ç”¨æˆ·ç®¡ç†</a></li>
+						<li><a href="#">è§’è‰²ç®¡ç†</a></li>
+						<li><a href="#">æƒé™ç®¡ç†</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> ¸öÈËĞÅÏ¢ <b class="caret"></b>
+					data-toggle="dropdown"> ä¸ªäººä¿¡æ¯ <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">ÎÒµÄĞÅÏ¢</a></li>
+						<li><a href="#">æˆ‘çš„ä¿¡æ¯</a></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -41,8 +47,8 @@
 </nav>
 
 
-<!-- -------------------------------------------------------ÍøÒ³Ö÷Ìå------------------------------------------------------------- -->
-<ul id="myTab" class="nav nav-tabs">
+<!-- -------------------------------------------------------ç½‘é¡µä¸»ä½“------------------------------------------------------------- -->
+<ul id="myTab" class="nav nav-tabs" style="height: 42px;">
    
 </ul>
 <div id="myTabContent" class="tab-content">
@@ -53,55 +59,58 @@
 
 <script type="text/javascript">
 window.onload = function(){
-	//µã»÷µ¼º½£¬ĞÂÔö±êÇ©Ò³------------------------------------------------------------------------------------
+	//è®¡ç®—ç½‘é¡µä¸»ä½“å†…å®¹é«˜åº¦------------------------------------------------------------------------------------
+	$("#myTabContent").height(getBrowserHeight()-115);
+	//ç‚¹å‡»å¯¼èˆªï¼Œæ–°å¢æ ‡ç­¾é¡µ------------------------------------------------------------------------------------
 	$(".dropdown-menu").find("a").on("click", function(){
 		var tabName = $(this).text();
 		var linkUrl = $(this).attr("linkUrl");
-		//É¾µôÔ­À´µÄ±êÇ©Ò³Ãæ
+		//åˆ æ‰åŸæ¥çš„æ ‡ç­¾é¡µé¢
 		$("#"+tabName+"Content").remove();
-		//ÉèÖÃÈ«²¿Òş²Ø
+		//è®¾ç½®å…¨éƒ¨éšè—
 		$("#myTab").find(".active").removeClass("active");
 		$("#myTabContent").find(".active").removeClass("active");
-		//ĞÂÔö±êÇ©Ò³Ãæ
-		$("#myTab").append('<li class="active" id="'+tabName+'Content" onclick="showTabContent(\''+tabName+'\')"><a href="#" data-toggle="tab">'+tabName+'</a></li>');
-		$("#myTabContent").append('<div class="tab-pane fade in active" id="'+tabName+'TabContent"><iframe style="width:100%;height:700px;" src="'+linkUrl+'"></iframe></div>');
+		//æ–°å¢æ ‡ç­¾é¡µé¢
+		var height = getBrowserHeight()-119;
+		$("#myTab").append('<li class="active" id="'+tabName+'Content"><a onclick="showTabContent(\''+tabName+'\')" href="#" data-toggle="tab" style="position:relative;">'+tabName+'</a><img onclick="delTab(\''+tabName+'\')" src="static/img/button-cross.png" style="height:25px;position:absolute;left:80px;top:7px;"/></li>');
+		$("#myTabContent").append('<div class="tab-pane fade in active" id="'+tabName+'TabContent"><iframe style="width:100%;height:'+height+'px;" src="'+linkUrl+'"></iframe></div>');
 	});
-	
 }
-
-
-//¸ù¾İid£¬ÏÔÊ¾±êÇ©Ò³Ö÷Ìå-------------------------------------------------------------------------------------------
+//æ ¹æ®idï¼Œæ˜¾ç¤ºæ ‡ç­¾é¡µä¸»ä½“-------------------------------------------------------------------------------------------
 function showTabContent(tabName){
+	console.info(tabName);
 	$("#myTabContent").find(".in").removeClass("in");
 	$("#myTabContent").find(".active").removeClass("active");
 	$("#"+tabName+"TabContent").addClass("in");
 	$("#"+tabName+"TabContent").addClass("active");
 }
-//ĞÂÔö±êÇ©Ò³Ãæ------------------------------------------------------------------------------------------------
+//æ–°å¢æ ‡ç­¾é¡µé¢------------------------------------------------------------------------------------------------
 function addTab(tabName,linkUrl){
-	//É¾µôÔ­À´µÄ±êÇ©Ò³Ãæ
+	//åˆ æ‰åŸæ¥çš„æ ‡ç­¾é¡µé¢
 	$("#"+tabName+"Content").remove();
-	//ÉèÖÃÈ«²¿Òş²Ø
+	//è®¾ç½®å…¨éƒ¨éšè—
 	$("#myTab").find(".active").removeClass("active");
 	$("#myTabContent").find(".active").removeClass("active");
-	//ĞÂÔö±êÇ©Ò³Ãæ
-	$("#myTab").append('<li class="active" id="'+tabName+'Content" onclick="showTabContent(\''+tabName+'\')"><a href="#" data-toggle="tab">'+tabName+'</a></li>');
-	$("#myTabContent").append('<div class="tab-pane fade in active" id="'+tabName+'TabContent"><iframe style="width:100%;height:700px;" src="'+linkUrl+'"></iframe></div>');
+	//æ–°å¢æ ‡ç­¾é¡µé¢
+	var height = getBrowserHeight()-119;
+	$("#myTab").append('<li class="active" id="'+tabName+'Content"><a onclick="showTabContent(\''+tabName+'\')" href="#" data-toggle="tab" style="position:relative;">'+tabName+'</a><img onclick="delTab(\''+tabName+'\')" src="static/img/button-cross.png" style="height:25px;position:absolute;left:80px;top:7px;"/></li>');
+	$("#myTabContent").append('<div class="tab-pane fade in active" id="'+tabName+'TabContent"><iframe style="width:100%;height:'+height+'px;" src="'+linkUrl+'"></iframe></div>');
 }
-//¹Ø±Õ±êÇ©Ò³Ãæ----------------------------------------------------------------------------------------------------
+//å…³é—­æ ‡ç­¾é¡µé¢----------------------------------------------------------------------------------------------------
 function delTab(tabName){
-	//ÉèÖÃÈ«²¿Òş²Ø
+	/* //è®¾ç½®å…¨éƒ¨éšè—
 	$("#myTab").find(".active").removeClass("active");
 	$("#myTabContent").find(".active").removeClass("active");
-	//ÏÔÊ¾Ç°Ò»¸ö
+	//æ˜¾ç¤ºå‰ä¸€ä¸ª
 	$("#"+tabName+"Content").prev().addClass("active");
 	$("#"+tabName+"TabContent").prev().addClass("active");
-	$($("#"+tabName+"TabContent").prev().find("iframe")[0]).reload();
-	//É¾³ı±êÇ©Ò³
+	$($("#"+tabName+"TabContent").prev().find("iframe")[0]).reload(); */
+	//åˆ é™¤æ ‡ç­¾é¡µ
 	$("#"+tabName+"Content").remove();
 	$("#"+tabName+"TabContent").remove();
+	$("#myTab li").last().find("a").first().click();
 }
-//urlĞÎÊ½µÄ²ÎÊı×ª»¯Îªjson¸ñÊ½-------------------------------------------------------------------------------------
+//urlå½¢å¼çš„å‚æ•°è½¬åŒ–ä¸ºjsonæ ¼å¼-------------------------------------------------------------------------------------
 function getQueryObject(url) {
     url = url == null ? window.location.href : url;
     var search = url.substring(url.lastIndexOf("?") + 1);

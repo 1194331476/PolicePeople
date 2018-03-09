@@ -6,81 +6,84 @@
 <!-- 引入 Bootstrap -->
 <link href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-<script src="https://code.jquery.com/jquery.js"></script>
+<script src="../../jquery-3.2.1/jquery-3.2.1.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../../jquery-3.2.1/jquery-3.2.1.js"></script>
+<script src="../../static/common.js"></script>
+
 <script type="text/javascript">
 window.onload = function(){
-	initTable();
+	initTable(1);
 }
 //初始化表格数据-------------------------------------------------------------------------------------
-function initTable(){
+function initTable(pageNum){
 	$.ajax({
-	    url:'../../controller/user.php?method=getUserListPage',
+	    url:'../../controller/userController.php?method=getUserListPage',
 	    type: "POST",
 	    dataType:"json",
 	    data:{
-	    	
+	    	pageNum:pageNum
 	    },
 	    async:true,//true为异步，false为同步
-	    success:function(result){
-	    	console.info(result);
+	    success:function(data){
+	    	if(pageNum == 1){
+	    		getPagenation(data['dataNum']);
+	    	}
+	    	getTable(data['data']);
 	    }
 	})
 }
+//拼接表格----------------------------------------------------------------------------------------------
+function getTable(data){
+	$("tbody").html("");
+	var tbody = "";
+	for(var i=0;i<data.length;i++){
+		tbody += "<tr>";
+		tbody += "<td>"+data[i].userName+"</td>";
+		tbody += "<td>"+data[i].trueName+"</td>";
+		tbody += "<td>"+data[i].password+"</td>";
+		tbody += "</tr>";
+	}
+	$("tbody").append(tbody);
+}
+//跳转新增页面----------------------------------------------------------------------------------------------
 function addUser(){
-	//跳转新增页面
 	parent.addTab("新增用户","web/user/addUser.html");
 }
 </script>
 </head>
 <body>
 
-<button type="button" class="btn btn-default" onclick="addUser()">新增</button>
-<button type="button" class="btn btn-default">编辑</button>
-<button type="button" class="btn btn-default">删除</button>
-<button type="button" class="btn btn-default">分配角色</button>
+<button type="button" class="btn btn-primary" onclick="addUser()">新增</button>
+<button type="button" class="btn btn-success">编辑</button>
+<button type="button" class="btn btn-info">删除</button>
+<button type="button" class="btn btn-warning">分配角色</button>
 
 <br>
 
-<input type="text" class="form-control" id="name" placeholder="请输入名称">
-<button type="button" class="btn btn-default">查询</button>
+<form class="form-inline" role="form">
+	<div class="form-group">
+		<label class="sr-only" for="name">名称</label>
+		<input type="text" class="form-control" id="name" 
+			   placeholder="请输入名称">
+	</div>
+	<button type="button" class="btn btn-success">查询</button>
+</form>
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>产品</th>
-      <th>付款日期</th>
-      <th>状态</th></tr>
+      <th>用户名</th>
+      <th>真实姓名</th>
+      <th>性别</th>
+     </tr>
   </thead>
   <tbody>
-    <tr class="active">
-      <td>产品1</td>
-      <td>23/11/2013</td>
-      <td>待发货</td></tr>
-    <tr class="success">
-      <td>产品2</td>
-      <td>10/11/2013</td>
-      <td>发货中</td></tr>
-    <tr class="warning">
-      <td>产品3</td>
-      <td>20/10/2013</td>
-      <td>待确认</td></tr>
-    <tr class="danger">
-      <td>产品4</td>
-      <td>20/10/2013</td>
-      <td>已退货</td></tr>
+    
   </tbody>
 </table>
 
-<ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
-</ul>
+
 </body>
 </html>

@@ -6,7 +6,7 @@
 <!-- 引入 Bootstrap -->
 <link href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-<script src="https://code.jquery.com/jquery.js"></script>
+<script src="../../jquery-3.2.1/jquery-3.2.1.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -17,7 +17,7 @@ function add(){
 	//submitData是解码后的表单数据，结果同上
 	var submitData = parent.getQueryObject(submitData);
 	$.ajax({
-	    url:'../../controller/user.php?method=addUser',
+	    url:'../../controller/userController.php?method=addUser',
 	    type: "POST",
 	    data:{
 	    	"data":submitData

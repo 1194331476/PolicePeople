@@ -14,13 +14,20 @@ if($method == "addUser"){
        echo "error";
    } 
 }else if($method == "getUserListPage"){
-    $sql="select * from user";
+    //分页查询用户方法-------------------------------------------------------------------------------------
+    $pageNum = $_POST['pageNum'];
+    $strat = ($pageNum-1)*10;
+    $sql="select * from user limit ".$strat.",10";
     $result = mysqli_query($conn,$sql); 
     $i = 0;
     while($obj = mysqli_fetch_object($result)){
-        $json[$i] = $obj;
+        $json['data'][$i] = $obj;
         ++$i;
     }
+    $sql = "select * from user";
+    $result = mysqli_query($conn,$sql);
+    $num = mysqli_num_rows($result);
+    $json['dataNum'] = $num;
     echo json_encode($json);
     // 释放结果集 
     mysqli_free_result($result);
